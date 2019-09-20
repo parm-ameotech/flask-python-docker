@@ -150,19 +150,27 @@ class DBManager:
         except (Exception, psycopg2.Error) as error:
             print("Error while inserting to table {}".format(table_name), error)
 
-    def get_table_content(self, table_name, condition=None):
+    def get_table_content(self, table_name, where_columns=[], where_values=[], where_signs=[]):
         if not self.is_connected():
             self.connect()
+            
         df = None
-        if condition is None:
-            select_table  = "SELECT * FROM {};".format(table_name)
+        where_query = ""
+        for i in range(len(where_columns)):
+            where_query += "{} {} {}".format(where_columns[i], where_signs[i], where_values[i])
+            if i != (len(where_columns) - 1):
+                where_query += " AND "
+
+        if where_query != "":
+            select_table  = "SELECT * FROM {} WHERE {};".format(table_name, where_query)
         else:
-            select_table  = "SELECT * FROM {} WHERE {};".format(table_name, condition)
+            select_table  = "SELECT * FROM {};".format(table_name)
+        
         try:
             self.psql_cursor.execute(select_table)
             colnames = [desc[0] for desc in self.psql_cursor.description]
             df = pd.DataFrame(self.psql_cursor.fetchall(), columns=colnames)
-        except (Exception, psycopg2.Error) as error:
+        except (Exception, psycopg2.Error) as error :
             print ("Error while getting table content for table {}".format(table_name), error)
         return df
 
