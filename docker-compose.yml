@@ -11,7 +11,6 @@ services:
   influxdb:
     image: influxdb
     container_name: influxdb_container
-    restart: unless-stopped
     ports:
       - 8293:8086
     volumes:
