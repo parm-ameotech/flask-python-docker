@@ -20,7 +20,7 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=82xyPferj
 
   web:
-    image: flask
+    image: tiangolo/uwsgi-nginx-flask
     container_name: flask_container
     ports:
     - "5000:5000"
