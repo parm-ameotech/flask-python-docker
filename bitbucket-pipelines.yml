@@ -19,6 +19,7 @@ pipelines:
             # need to copy all files     
             - for i in *.py; do scp -P 822 -r $i root@dui.dev:/nvram/neuraldistribution/staging/notebooks/$i;done
             - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging/notebooks;chmod 755 *.py"
+            - scp web root@dui.dev:/nvram/neuraldistribution/staging/web
       - step:
           name: Building docker
 
