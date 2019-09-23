@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres:11"
+    container_name: "postgres_container"
+    ports:
+      - "8292:5432"
+    volumes:
+      - postgres_db-volume:/var/lib/postgresql/data
+
+  influxdb:
+    image: influxdb
+    container_name: influxdb_container
+    restart: unless-stopped
+    ports:
+      - 8293:8086
+    volumes:
+      - influxdb-volume:/var/lib/influxdb
+    environment:
+      - INFLUXDB_ADMIN_PASSWORD=82xyPferj
+volumes:
+  postgres_db-volume:
+    external: true
+  
+  influxdb-volume:
+    external: true
