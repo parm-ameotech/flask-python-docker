@@ -8,19 +8,6 @@ pipelines:
   branches:
     staging:
       - step:
-          name: Files transfer
-
-          script: 
-            # Dockercompose  
-            - scp -P 822 -r docker-compose.yml root@dui.dev:/nvram/neuraldistribution/staging/docker-compose.yml
-            # need to create directories for jupyter files
-            - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging; mkdir -p notebooks; chmod 777 notebooks; mkdir -p notebooks/work; chmod 777 notebooks/work;mkdir -p notebooks/work/data; chmod 777 notebooks/work/data;" 
-            - scp -P 822 -r requirements.txt root@dui.dev:/nvram/neuraldistribution/staging/notebooks/work/data/requirements.txt
-            # need to copy all files     
-            - for i in *.py; do scp -P 822 -r $i root@dui.dev:/nvram/neuraldistribution/staging/notebooks/$i;done
-            - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging/notebooks;chmod 755 *.py"
-
-      - step:
           name: Building docker
 
           script: # Name the image and create a docker image
@@ -31,14 +18,10 @@ pipelines:
           name: Deploying dockers
           script:
             - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging; " \
-              " docker volume create postgresdistribution-volume ;" \
-              " docker volume create influxdbdistribution-volume ;" \
-              " docker volume create flaskdistribution-volume ;" \
               " docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD dui.dev:5000; " \
               " docker stop neuraldistribution || true && docker rm neuraldistribution || true; " \
               " docker run -d -i -t " \
-              " --name=neuraldistribution dui.dev:5000/neuraldistribution:$BITBUCKET_BUILD_NUMBER; " \
-              " docker-compose up -d"
+              " --name=neuraldistribution dui.dev:5000/neuraldistribution:$BITBUCKET_BUILD_NUMBER; "
 
     master:
       - step:
