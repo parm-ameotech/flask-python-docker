@@ -22,7 +22,6 @@ services:
   web:
     image: flask
     container_name: flask_container
-    build: ./web
     ports:
     - "5000:5000"
     volumes:
