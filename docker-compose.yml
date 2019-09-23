@@ -18,9 +18,21 @@ services:
       - influxdbdistribution-volume:/var/lib/influxdbdistribution
     environment:
       - INFLUXDB_ADMIN_PASSWORD=82xyPferj
+
+  web:
+    image: flask
+    container_name: flask_container
+    build: ./web
+    ports:
+    - "5000:5000"
+    volumes:
+    - flask-volume:/var/lib/flask/code
 volumes:
   postgres_db-volume:
     external: true
   
   influxdbdistribution-volume:
+    external: true
+
+  flask-volume:
     external: true

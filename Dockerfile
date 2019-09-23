@@ -10,4 +10,4 @@ ADD neuraldistribution.py /
 ADD DBInterface.py /
 ADD config.py /
 
-CMD [ "python","-u", "./neuraldistribution.py" ]
+CMD [ "python","-u", "./web/main.py" ]
