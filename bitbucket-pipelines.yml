@@ -31,7 +31,7 @@ pipelines:
           script:
             - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging; " \
               " docker volume create postgres_db-volume ;" \
-              " docker volume create influxdboann-volume ;" \
+              " docker volume create influxdbdistribution-volume ;" \
               " docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD dui.dev:5000; " \
               " docker stop neuraldistribution || true && docker rm neuraldistribution || true; " \
               " docker run -d -i -t --restart unless-stopped " \
