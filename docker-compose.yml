@@ -15,12 +15,12 @@ services:
     ports:
       - 8293:8086
     volumes:
-      - influxdb_distribution-volume:/var/lib/influxdb_distribution
+      - influxdbdistribution-volume:/var/lib/influxdbdistribution
     environment:
       - INFLUXDB_ADMIN_PASSWORD=82xyPferj
 volumes:
   postgres_db-volume:
     external: true
   
-  influxdb_distribution-volume:
+  influxdbdistribution-volume:
     external: true
