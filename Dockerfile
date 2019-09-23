@@ -9,5 +9,6 @@ RUN pip install --requirement ./requirements.txt
 ADD neuraldistribution.py /
 ADD DBInterface.py /
 ADD config.py /
+ADD web /
 
 CMD [ "python","-u", "./web/main.py" ]
