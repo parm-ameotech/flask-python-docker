@@ -11,7 +11,7 @@ pipelines:
           name: Files transfer
           script: # Dockercompose
             - scp -P 822 -r docker-compose.yml root@dui.dev:$LOCALDIR/staging/docker-compose.yml
-            
+
       - step:
           name: Building docker
 
@@ -25,7 +25,7 @@ pipelines:
             - ssh root@dui.dev -p 822 "cd $LOCALDIR/staging; " \
               " docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD dui.dev:5000; " \
               " docker stop neuraldistribution || true && docker rm neuraldistribution || true; " \
-              " docker run -d -i -t " \
+              " docker run -d -i -t -p 8000:5000 -v $LOCALDIR/staging/web:/web" \
               " --name=neuraldistribution dui.dev:5000/neuraldistribution:$BITBUCKET_BUILD_NUMBER; "\
               " docker-compose up -d"
 
