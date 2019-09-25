@@ -1,36 +1,9 @@
 version: '2'
 services:
-  postgres:
-    image: "postgres:11"
-    container_name: postgres_distribution
-    ports:
-      - 8292:5432
-    volumes:
-      - postgresdistribution-volume:/var/lib/postgresdistribution/data
+    web:
+      build: .
+      container_name: tmp
+      ports:
+        - "5000:5000"
 
-  influxdb:
-    image: influxdb
-    container_name: influxdb_distribution
-    ports:
-      - 8293:8086
-    volumes:
-      - influxdbdistribution-volume:/var/lib/influxdbdistribution
-    environment:
-      - INFLUXDB_ADMIN_PASSWORD=82xyPferj
 
-  web:
-    image: tiangolo/uwsgi-nginx-flask
-    container_name: flask_distribution
-    ports:
-    - "5000:5000"
-    volumes:
-    - flaskdistribution-volume:/var/lib/flaskdistribution/code
-volumes:
-  postgresdistribution-volume:
-    external: true
-  
-  influxdbdistribution-volume:
-    external: true
-
-  flaskdistribution-volume:
-    external: true
