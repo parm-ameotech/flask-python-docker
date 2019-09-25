@@ -1,31 +1,27 @@
-version: '2'
+version: '3'
 services:
-  web:
+  flaskdistribution:
     build: .
-    image: neuraldistribution:staging
+    image: neuraldistribution:latest
     container_name: flask_distribution
     environment:
       DEVELOPMENT: STAGING
     ports:
-    - "8000:5000"
+    - 8000:5000
     volumes:
     - ./web:/web
     depends_on: 
-    - db
+    - postgres_distribution
 
-  db:
+  postgres_distribution:
     image: "postgres:11"
     container_name: postgres_distribution
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     ports:
     - 8292:5432
     volumes:
-    - postgresdistribution-volume:/var/lib/postgresdistribution/data
+    - $LOCALDIR/postgresdistribution:/var/lib/postgresql/data
 
-
-volumes:
-  postgresdistribution-volume:
-    external: true
