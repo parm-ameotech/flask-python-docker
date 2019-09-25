@@ -17,7 +17,7 @@ pipelines:
       - step:
           name: Deploying dockers
           script:
-            - ssh root@dui.dev -p 822 "cd /nvram/neuraldistribution/staging; " \
+            - ssh root@dui.dev -p 822 "cd $LOCALDIR/staging; " \
               " docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD dui.dev:5000; " \
               " docker stop neuraldistribution || true && docker rm neuraldistribution || true; " \
               " docker run -d -i -t " \

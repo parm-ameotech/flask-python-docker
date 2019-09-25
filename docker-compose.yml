@@ -23,5 +23,5 @@ services:
     ports:
     - 8292:5432
     volumes:
-    - $LOCALDIR/postgresdistribution:/var/lib/postgresql/data
+    - $LOCALDIR/staging/postgresdistribution:/var/lib/postgresql/data
 
