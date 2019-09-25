@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     ports:
-    - $DBPORT:5432
+    - 8292:5432
     volumes:
     - $LOCALDIR/staging/postgresdistribution:/var/lib/postgresql/data
 
