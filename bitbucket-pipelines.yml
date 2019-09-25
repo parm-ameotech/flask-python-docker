@@ -7,6 +7,11 @@ options:
 pipelines:
   branches:
     staging:
+      - step: 
+          name: Files transfer
+          script: # Dockercompose
+            - scp -P 822 -r docker-compose.yml root@dui.dev:$LOCALDIR/staging/docker-compose.yml
+            
       - step:
           name: Building docker
 
