@@ -1,1 +1,10 @@
-flask
+graypy
+psycopg2
+slacker
+influxdb
+datetime
+numpy
+pandas
+swifter
+Flask==1.0.2
+Flask-SQLAlchemy

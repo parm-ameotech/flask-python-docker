@@ -1,9 +1,10 @@
 FROM python:3.7
 
 ADD requirements.txt /
-RUN pip install -r ./requirements
+RUN pip install -r ./requirements.txt
 
-ADD . /code
-WORKDIR /code
-CMD python app.py
+COPY web/ /web
+WORKDIR /web
 
+EXPOSE 5000
+CMD ["python", "server.py"]
