@@ -10,8 +10,8 @@ pipelines:
       - step: 
           name: Files transfer
           script: # Dockercompose
-            - scp -P 822 -r docker-compose.yml root@dui.dev:$LOCALDIR/staging/docker-compose.yml
-            - scp -P 822 -r Dockerfile root@dui.dev:$LOCALDIR/staging/Dockerfile
+            - scp -P 822 -r docker-compose.yml root@dui.dev:/nvram/neuraldistribution/staging/docker-compose.yml
+            - scp -P 822 -r Dockerfile root@dui.dev:/nvram/neuraldistribution/staging/Dockerfile
       - step:
           name: Building docker
 
