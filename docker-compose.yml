@@ -1,8 +1,14 @@
 version: '3'
 services:
+  neuraldistribution:
+    image: neuraldistribution
+    container_name: neuraldistribution
+    restart: always
+    ports:
+    - 8000:5000
   
   postgres_distribution:
-    image: "postgres:11"
+    image: postgres:11
     container_name: postgres_distribution
     restart: always
     environment:
