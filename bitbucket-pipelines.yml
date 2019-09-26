@@ -26,7 +26,7 @@ pipelines:
               " docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD dui.dev:5000; " \
               " docker stop neuraldistribution || true && docker rm neuraldistribution || true; " \
               " docker run -d -i -t -p 8000:5000 -v $LOCALDIR/staging/web:/web" \
-              " --name=neuraldistribution dui.dev:5000/neuraldistribution:$BITBUCKET_BUILD_NUMBER; "\
+              " --name neuraldistribution dui.dev:5000/neuraldistribution:$BITBUCKET_BUILD_NUMBER; "\
               " docker-compose up -d"
 
     master:
