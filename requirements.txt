@@ -7,4 +7,5 @@ numpy
 pandas
 swifter
 Flask==1.0.2
+Jinja2==2.10.1
 Flask-SQLAlchemy
