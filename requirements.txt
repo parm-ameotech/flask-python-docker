@@ -9,3 +9,6 @@ swifter
 Flask==1.0.2
 Jinja2==2.10.1
 Flask-SQLAlchemy
+flask-restplus
+flask-swagger-ui==3.20.9
+flask_cors==3.0.7

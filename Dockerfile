@@ -1,11 +1,11 @@
 # Use an official Python runtime as a parent image
-FROM python:3.6
+FROM python:3.7
 
 # Set the working directory
-WORKDIR /neural-distribution
+WORKDIR /neuraldistribution
 
 
-COPY . /neural-distribution/
+COPY . /neuraldistribution/
 
 # # Copy the current directory contents into the container at /app
 # ADD . /neural-distribution/
@@ -14,7 +14,7 @@ RUN pip install -U pip
 RUN pip install -r requirements.txt
 
 # EXPOSE 8001
-RUN chmod +x /neural-distribution/docker-entrypoint.sh
+RUN chmod +x /neuraldistribution/docker-entrypoint.sh
 
 
 

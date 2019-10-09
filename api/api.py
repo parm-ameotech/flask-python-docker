@@ -1,17 +1,19 @@
 from flask import Flask, jsonify , json
-app = Flask(__name__)
+from flask_restplus import Api, Resource
+import os
+from os import environ
+app = Flask(__name__)                  
+api = Api(app)  
 
-@app.route('/', methods=['GET'])
-def home():
-	data={
-		'name':'Index',
-	}
-	response = app.response_class(
-        response=json.dumps(data),
-        status=200,
-        mimetype='application/json'
-    	)
-	return response
+ACCESS_KEY = os.environ.get('access_key')
+
+app.config['SECRET_KEY'] = ACCESS_KEY
+ns = api.namespace('home', description='Neural')
+
+@ns.route('/')                   
+class Home(Resource):  
+	def get(self):
+		return {'index': 'page', 'ACCESS_KEY': ACCESS_KEY}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002, debug=True)
