@@ -1,21 +1,29 @@
-version: '3'
-services:
-  neuraldistribution:
-    image: neuraldistribution
-    container_name: neuraldistribution
-    restart: always
-    ports:
-    - 8000:5000
-  
-  postgres_distribution:
-    image: postgres:11
-    container_name: postgres_distribution
-    restart: always
-    environment:
-    - POSTGRES_USER : postgres  
-    - POSTGRES_PASSWORD : postgres 
-    ports:
-    - 8292:5432
-    volumes:
-    - /nvram/neuraldistribution/staging/postgresdistribution:/var/lib/postgresql/data
+version: '3.5'
 
+services:
+  db:
+    image: postgres
+
+  internal_dashboard:
+    build: .
+    command: python /neural-distribution/internal_dashboard/app.py 
+    volumes:
+      - .:/neural-distribution/
+    ports:
+      - "8000:5000"
+
+  customer:
+    build: .
+    command: python /neural-distribution/customers/app.py
+    volumes:
+      - .:/neural-distribution/
+    ports:
+      - "8001:5001"
+
+  api:
+    build: .
+    command: python /neural-distribution/api/api.py
+    volumes:
+      - .:/neural-distribution/
+    ports:
+      - "8002:5002"
