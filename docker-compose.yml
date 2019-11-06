@@ -3,6 +3,8 @@ version: '3.5'
 services:
   db:
     image: postgres
+    env_file:
+      - variables.env
 
   internal_dashboard:
     build: .
@@ -10,7 +12,7 @@ services:
     volumes:
       - .:/neuraldistribution/
     ports:
-      - "8000:5000"
+      - "8003:5000"
     env_file:
       - variables.env
 
@@ -23,6 +25,8 @@ services:
       - "8001:5001"
     env_file:
       - variables.env
+    depends_on:
+      - db
 
   api:
     build: .

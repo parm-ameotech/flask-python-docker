@@ -12,6 +12,9 @@ pipelines:
           script: # Dockercompose
             - scp -P 822 -r docker-compose.yml root@dui.dev:/nvram/neuraldistribution/staging/docker-compose.yml
             - scp -P 822 -r Dockerfile root@dui.dev:/nvram/neuraldistribution/staging/Dockerfile
+            - scp -P 822 -r variables.env root@dui.dev:/nvram/neuraldistribution/staging/variables.env
+            - scp -P 822 -r requirements.txt root@dui.dev:/nvram/neuraldistribution/staging/requirements.txt
+            - scp -P 822 -r docker-entrypoint.sh root@dui.dev:/nvram/neuraldistribution/staging/docker-entrypoint.sh
       - step:
           name: Building docker
 
