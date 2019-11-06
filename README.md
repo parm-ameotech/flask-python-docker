@@ -5,7 +5,7 @@ Basic Python Flask rest and web app in Docker
 Build the Docker image manually by cloning the Git repo.
 ```
 $ git clone https://github.com/parm-ameotech/flask-python-docker
-$ docker build -t python-flask-docker .
+$ docker build -t flask-python-docker .
 ```
 
 ### Download precreated image
