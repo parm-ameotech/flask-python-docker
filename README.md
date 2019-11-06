@@ -11,7 +11,7 @@ $ docker build -t flask-python-docker .
 ### Download precreated image
 You can also just download the existing image from [DockerHub](https://hub.docker.com/r/parm-ameotech/flask-python-docker/).
 ```
-docker pull python-flask-docker
+docker pull flask-python-docker
 ```
 
 ### Run the container
